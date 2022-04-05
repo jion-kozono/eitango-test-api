@@ -36,3 +36,10 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: eitango-test-api
           heroku_email: ${{secrets.HEROKU_EMAIL}}
+      - run: |
+          FILE="eitango-test-api/client_secret.json"
+          if [ -e $FILE ]; then
+            echo "File exists."
+          else
+            echo "File does not exist."
+          fi
