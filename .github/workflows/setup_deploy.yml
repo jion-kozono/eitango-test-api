@@ -22,7 +22,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Generate client_secret.json
         run: |
-          sh ./scripts/setup_spreadsheet.sh
+          cd eitango-test-api
+          pwd
+          sh scripts/setup_spreadsheet.sh
 
   heroku-deploy:
     name: Heroku deploy
