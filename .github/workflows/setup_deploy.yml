@@ -25,6 +25,12 @@ jobs:
         run: |
           pwd
           sh scripts/setup_spreadsheet.sh
+          FILE="client_secret.json"
+          if [ -e $FILE ]; then
+            echo "File exists."
+          else
+            echo "File does not exist."
+          fi
 
   heroku-deploy:
     name: Heroku deploy
@@ -40,6 +46,7 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
       - working-directory: ./
         run: |
+          pwd
           FILE="client_secret.json"
           if [ -e $FILE ]; then
             echo "File exists."
