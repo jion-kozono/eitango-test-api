@@ -28,9 +28,12 @@
   - `sh scripts/init.sh`
   - ルートディレクトリに仮想環境`.venv`フォルダが作られる。
 
-## spreadsheet設定
+## 環境変数設定
 
-[ここ](https://drive.google.com/drive/folders/1IEy9B5pMT7GYvy83sqY5-pXqTZLsZGBa)から`client_secret.json`ファイルをダウンロードし、root直下に配置
+- direnv推奨
+- `.env`ファイルを作成し、`.env.default`の内容をコピー
+- [ここ](https://drive.google.com/drive/folders/1IEy9B5pMT7GYvy83sqY5-pXqTZLsZGBa)から`client_secret.json`ファイルの中の情報を取得し、`.env`に追記
+- `direnv allow .`
 
 ## API の立ち上げ
 
@@ -42,11 +45,4 @@
 
 ## API を heroku へデプロイ
 
-```sh
-heroku login
-git add . # ディレクトリ直下のファイルをgitの管理対象に追加
-git commit -m "コミットメッセージ" # ファイルの変更をgitに登録
-
-heroku git:remote -a simple-eitango-test # Herokuとgitを関連づける
-git push heroku master # HerokuにPython(FastAPI)アプリをデプロイ(配備)
-```
+- github actionsでpush時にデプロイされる
