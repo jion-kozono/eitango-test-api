@@ -21,8 +21,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Generate client_secret.json
+        working-directory: ./
         run: |
-          cd eitango-test-api
           pwd
           sh scripts/setup_spreadsheet.sh
 
@@ -39,7 +39,8 @@ jobs:
           heroku_app_name: eitango-test-api
           heroku_email: ${{secrets.HEROKU_EMAIL}}
       - run: |
-          FILE="eitango-test-api/client_secret.json"
+          working-directory: ./
+          FILE="client_secret.json"
           if [ -e $FILE ]; then
             echo "File exists."
           else
