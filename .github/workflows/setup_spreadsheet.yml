@@ -20,4 +20,5 @@ jobs:
     steps:
       - name: Generate client_secret.json
         run: |
-          sh ../../scripts/setup_spreadsheet.sh
+          cd ~
+          sh scripts/setup_spreadsheet.sh
