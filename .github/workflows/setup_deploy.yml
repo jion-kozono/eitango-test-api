@@ -1,0 +1,39 @@
+name: Setup and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  setup-spreadsheet:
+    name: Setup Google SpreadSheet Setting
+    runs-on: ubuntu-latest
+
+    env:
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      PRIVATE_KEY_ID: ${{ secrets.PRIVATE_KEY_ID }}
+      PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+      CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
+      CLIENT_X599_CERT_URL: ${{ secrets.CLIENT_X599_CERT_URL }}
+
+    steps:
+      - name: Generate client_secret.json
+      - uses: actions/checkout@v2
+        run: |
+          sh ./scripts/setup_spreadsheet.sh
+
+  heroku-deploy:
+    name: Heroku deploy
+    runs-on: ubuntu-latest
+    needs: setup-spreadsheet
+
+    steps:
+      - name: Heroku deploy
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.8.8
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: eitango-test-api
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
