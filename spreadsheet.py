@@ -6,6 +6,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 print(os.path.exists("client_secret.json"))
 print(os.path.exists("./client_secret.json"))
 print(os.path.exists("eitango-test-api/client_secret.json"))
+print(os.path.exists("routers/word.py"))
 
 # use creds to create a client to interact with the Google Drive API
 scope =['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
