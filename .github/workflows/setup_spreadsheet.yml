@@ -18,6 +18,6 @@ jobs:
       CLIENT_X599_CERT_URL: ${{ secrets.CLIENT_X599_CERT_URL }}
 
     steps:
-      - name: Generate ~/.client_secret.json
+      - name: Generate client_secret.json
         run: |
-          sh scripts/setup_spreadsheet.sh
+          sh ../../scripts/setup_spreadsheet.sh
