@@ -1,6 +1,8 @@
 #!/bin/sh
 
-touch ./client_secret.json
+cd eitango-test-api
+pwd
+touch client_secret.json
 
 SECRETS_JSON=$(cat <<-END
   {
@@ -18,4 +20,4 @@ SECRETS_JSON=$(cat <<-END
 END
 )
 
-echo $SECRETS_JSON > ./client_secret.json
+echo $SECRETS_JSON > client_secret.json
