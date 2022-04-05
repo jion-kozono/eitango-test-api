@@ -23,23 +23,9 @@ jobs:
       - name: Generate client_secret.json
         working-directory: ./
         run: |
-          pwd
           sh scripts/setup_spreadsheet.sh
-          FILE="client_secret.json"
-          if [ -e $FILE ]; then
-            echo "File exists."
-          else
-            echo "File does not exist."
-          fi
-
-  heroku-deploy:
-    name: Heroku deploy
-    runs-on: ubuntu-latest
-    needs: setup-spreadsheet
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.8.8
+      - name: Heroku deploy
+        uses: akhileshns/heroku-deploy@v3.8.8
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: eitango-test-api
@@ -53,3 +39,25 @@ jobs:
           else
             echo "File does not exist."
           fi
+
+  # heroku-deploy:
+  #   name: Heroku deploy
+  #   runs-on: ubuntu-latest
+  #   needs: setup-spreadsheet
+
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: akhileshns/heroku-deploy@v3.8.8
+  #       with:
+  #         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+  #         heroku_app_name: eitango-test-api
+  #         heroku_email: ${{secrets.HEROKU_EMAIL}}
+      # - working-directory: ./
+      #   run: |
+      #     pwd
+      #     FILE="client_secret.json"
+      #     if [ -e $FILE ]; then
+      #       echo "File exists."
+      #     else
+      #       echo "File does not exist."
+      #     fi
