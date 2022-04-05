@@ -3,6 +3,8 @@ import os
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
+print(os.environ['PROJECT_ID'])
+
 # client_secret.jsonを作成
 client_secret_dict = {
   "type": "service_account",
