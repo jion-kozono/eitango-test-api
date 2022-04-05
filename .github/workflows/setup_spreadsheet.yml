@@ -1,0 +1,24 @@
+name: Setup Google SpreadSheet Setting
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  setup-spreadsheet:
+    runs-on: ubuntu-latest
+
+    env:
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      PRIVATE_KEY_ID: ${{ secrets.PRIVATE_KEY_ID }}
+      PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+      CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
+      CLIENT_X599_CERT_URL: ${{ secrets.CLIENT_X599_CERT_URL }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Generate client_secret.json
+        run: |
+          sh ./scripts/setup_spreadsheet.sh
