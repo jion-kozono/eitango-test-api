@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# cd eitango-test-api
-# pwd
 touch client_secret.json
 
 SECRETS_JSON=$(cat <<-END
