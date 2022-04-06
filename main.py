@@ -14,7 +14,7 @@ origin_regex = "http://localhost:*"
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_origin_regex=origin_regex,
     allow_credentials=True,
     allow_methods=["*"],
