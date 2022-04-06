@@ -10,7 +10,7 @@ origins = [
     "https://simple-eitango-test-app.web.app"
 ]
 
-origin_regex = "http://localhost:.*\/#/"
+origin_regex = "http://localhost:.*/#/"
 
 app.add_middleware(
     CORSMiddleware,
