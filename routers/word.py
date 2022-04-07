@@ -12,8 +12,8 @@ async def getAllBooks():
     return book_names
 
 @router.get("/words/{book_name}", response_model=List[word_schema.Word])
-async def getTestWords(book_name: str, first: int, last: int, is_only_week: bool):
-    words = word_cruds.getTestWords(book_name, first, last, is_only_week)
+async def getRangeWords(book_name: str, first: int, last: int, is_only_week: bool):
+    words = word_cruds.getRangeWords(book_name, first, last, is_only_week)
     return words
 
 @router.post("/isCorrect/", response_model=None)

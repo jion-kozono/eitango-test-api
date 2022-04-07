@@ -3,15 +3,15 @@ from spreadsheet import sheet
 
 from schemas import word as word_schema
 
-# テスト単語一覧取得
+# 単語帳一覧取得
 def getAllBooks():
     book_name_list_of_list = sheet.get("D2:D")
     book_names = list(map(lambda book_name_list: book_name_list[0], book_name_list_of_list))
     filtered_book_names = list(set(book_names))
     return filtered_book_names
 
-# テスト単語一覧取得
-def getTestWords(book_name: str, first: int, last: int, is_only_week: bool):
+# 範囲内単語一覧取得
+def getRangeWords(book_name: str, first: int, last: int, is_only_week: bool):
     list_of_dicts = sheet.get_all_records()
     if is_only_week:
         return list(filter(lambda i: i["book_name"] == book_name and first <= i["word_num"] <= last and int(i["is_correct"]) == -1, list_of_dicts))
