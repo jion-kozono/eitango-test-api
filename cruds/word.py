@@ -15,7 +15,8 @@ def getAllBooks():
 def getRangeWords(book_name: str, first: int, last: int, is_only_week: bool):
     list_of_dicts = sheet1.get_all_records()
     # 最終学習時刻を更新
-    updateStudyTime(isTest=False)
+    if list_of_dicts:
+        updateStudyTime(isTest=False)
     if is_only_week:
         return list(filter(lambda i: i["book_name"] == book_name and first <= i["word_num"] <= last and int(i["is_correct"]) == -1, list_of_dicts))
     return list(filter(lambda i: i["book_name"] == book_name and first <= i["word_num"] <= last, list_of_dicts))
@@ -23,8 +24,8 @@ def getRangeWords(book_name: str, first: int, last: int, is_only_week: bool):
 # 苦手単語一覧取得
 def getAllWeekWords():
     list_of_dicts = sheet1.get_all_records()
-    # 最終学習時刻を更新
-    updateStudyTime(isTest=False)
+    if list_of_dicts:
+        updateStudyTime(isTest=False)
     return [i for i in list_of_dicts if int(i["is_correct"]) == -1] # 内包表記で表してみた
     # return list(filter(lambda i: int(i["is_correct"]) == -1, list_of_dicts))
 
