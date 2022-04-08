@@ -34,7 +34,6 @@ def postIsCorrect(is_correct_list: List[word_schema.PostIsCorrectInput]):
         cell_value = int(is_correct_cell.value)
         # 取得したisCorrectを解答のものと比較して、値を反転させるか判断
         is_correct_cell.value = (- cell_value) if cell_value != int(is_correct_dict.is_correct) else 0
-        print(is_correct_cell)
         if is_correct_cell.value != 0: # 値が変わらない場合は更新用配列に入れない
             cell_list_to_update.append(is_correct_cell)
 
