@@ -24,6 +24,5 @@ scope =['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/aut
 creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
 client = gspread.authorize(creds)
 
-# Find a workbook by name and open the first sheet
-# Make sure you use the right name here.
-sheet = client.open("晴楽の英単語帳").sheet1
+sheet1 = client.open("晴楽の英単語帳").worksheet('単語帳')
+sheet2 = client.open("晴楽の英単語帳").worksheet('最終解答時刻')
