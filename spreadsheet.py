@@ -25,4 +25,4 @@ creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', s
 client = gspread.authorize(creds)
 
 sheet1 = client.open("晴楽の英単語帳").worksheet('単語帳')
-sheet2 = client.open("晴楽の英単語帳").worksheet('最終解答時刻')
+sheet2 = client.open("晴楽の英単語帳").worksheet('最終学習時刻')
