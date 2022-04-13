@@ -7,7 +7,7 @@ from util.datetime import get_now
 
 # 単語帳一覧取得
 def getAllBooks():
-    book_name_list_of_list = sheet1.get("D2:D")
+    book_name_list_of_list = sheet1.get("F2:F")
     book_names = list(map(lambda book_name_list: book_name_list[0], book_name_list_of_list))
     filtered_book_names = list(set(book_names))
     return filtered_book_names
@@ -41,7 +41,7 @@ def postIsCorrect(is_correct_list: List[word_schema.PostIsCorrectInput]):
         # idで該当箇所を検索
         id_cell = sheet1.find(is_correct_dict.id)
         # 取得したidと同じ行のisCorrectを取得
-        is_correct_cell = sheet1.acell(f'F{id_cell.row}')
+        is_correct_cell = sheet1.acell(f'H{id_cell.row}')
         cell_value = int(is_correct_cell.value)
         # 取得したisCorrectを解答のものと比較して、値を反転させるか判断
         is_correct_cell.value = (- cell_value) if cell_value != int(is_correct_dict.is_correct) else 0
