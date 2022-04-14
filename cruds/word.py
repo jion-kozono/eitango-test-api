@@ -28,23 +28,29 @@ def getAllWeekWords():
     if list_of_dicts:
         updateStudyTime(isTest=False)
     # 最終学習時刻を更新
-    words = [i for i in list_of_dicts if int(i["is_correct"]) == -1] # 内包表記で表してみた
-    # words = list(filter(lambda i: int(i["is_correct"]) == -1, list_of_dicts))
+    words = [i for i in list_of_dicts if i["is_correct"] == -1] # 内包表記で表してみた
+    # words = list(filter(lambda i: i["is_correct"] == -1, list_of_dicts))
     if words:
         updateStudyTime(isTest=False)
     return words
 
 
-def postIsCorrect(is_correct_list: List[word_schema.PostIsCorrectInput]):
+def postIsCorrect(is_correct_dict_list: List[word_schema.PostIsCorrectInput]):
     cell_list_to_update = []
-    for is_correct_dict in is_correct_list:
+    for is_correct_dict in is_correct_dict_list:
         # idで該当箇所を検索
         id_cell = sheet1.find(is_correct_dict.id)
+        is_correct_list = list(map(lambda y: y.is_correct, filter(lambda x: x.id == id_cell.value, is_correct_dict_list)))
+        # 一つでも間違っていたらその単語は苦手になる
+        if -1 in is_correct_list:
+            is_correct_dict.is_correct = -1
+
         # 取得したidと同じ行のisCorrectを取得
         is_correct_cell = sheet1.acell(f'H{id_cell.row}')
         cell_value = int(is_correct_cell.value)
+        print(type(is_correct_dict.is_correct))
         # 取得したisCorrectを解答のものと比較して、値を反転させるか判断
-        is_correct_cell.value = (- cell_value) if cell_value != int(is_correct_dict.is_correct) else 0
+        is_correct_cell.value = (- cell_value) if cell_value != is_correct_dict.is_correct else 0
         if is_correct_cell.value != 0: # 値が変わらない場合は更新用配列に入れない
             cell_list_to_update.append(is_correct_cell)
 
